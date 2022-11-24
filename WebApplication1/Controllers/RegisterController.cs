@@ -27,35 +27,36 @@ namespace WebApplication1.Controllers
             
             NpgsqlCommand consulta = new NpgsqlCommand($"INSERT INTO \"public\".\"users\" (usuario_nick, usuario_password) VALUES('{ViewBag.Name}','{ViewBag.Password}')", connection);
             //Comparamos si la contraseña tiene menos de 7 caracteres
-            if (password.Length < 7)
+            bool mayuscula = false, minuscula = false, numero = false;
+            for (int i = 0; i < password.Length; i++)
             {
-                Console.WriteLine("La contraseña tiene que tener al menos 7 caracteres de longitud");
+                if (Char.IsUpper(password, i))
+                {
+                    mayuscula = true;
+                }
+                else if (Char.IsLower(password, i))
+                {
+                    minuscula = true;
+                }
+                else if (Char.IsDigit(password, i))
+                {
+                    numero = true;
+                }
             }
-            //Comprobamos si la contraseña tiene mayusculas
-            else if(!password.Contains("A,B,C,D,E,F,G,H,I,J,K,L,M,N,Ñ,O,P,Q,R,S,T,U,V,W,X,Y,Z"))
+            if (mayuscula && minuscula && numero && password.Length >= 7)
             {
-                Console.WriteLine("La contraseña tiene que tener al menos 1 mayúscula");
-            }
-            //Comprobamos si la contraseña tiene minúscula
-            else if(!password.Contains("a,b,c,d,e,f,g,h,i,j,k,l,m,n,ñ,o,p,q,r,s,t,u,v,w,x,y,z"))
-            {
-                Console.WriteLine("La contraseña tiene que tener al menos 1 minúscula");
-            }
-            else
-            {
+                Console.WriteLine("La contraseña cumple los requisitos minimos");
                 NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
                 Console.WriteLine("Se ha registrado con exito");
-
+            } else
+            {
+                Console.WriteLine("La contraseña no cumple los requisitos minimos");
             }
-
-
-
-
             Console.WriteLine("Cerrando conexion");
             connection.Close();
             return View();
         }
 
-
+       
     }
 }

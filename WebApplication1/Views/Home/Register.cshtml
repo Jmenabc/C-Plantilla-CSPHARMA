@@ -1,5 +1,9 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@page
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
 }
 
 <form method="post">
@@ -7,6 +11,7 @@
     Password: <input type="password" name="password" id="password" /><br />
     <button type="submit">Enviar información</button>
 </form>
-@Html.ActionLink("Registrate","Register")
+@Html.ActionLink("Logueate","Index")
 @ViewBag.Name
 @ViewBag.Password
+
