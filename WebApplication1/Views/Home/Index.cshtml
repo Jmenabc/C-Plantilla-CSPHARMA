@@ -1,0 +1,12 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form method="post">
+    Name: <input type="text" name="name" id="name" /><br />
+    Password: <input type="password" name="password" id="password" /><br />
+    <button type="submit">Enviar información</button>
+</form>
+
+@ViewBag.Name
+@ViewBag.Password
