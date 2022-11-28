@@ -26,7 +26,7 @@ namespace WebApplication1.Controllers
         //Metodo post para comprobar si los credenciales de inicio de sesión son correctos
 
         [HttpPost]    
-        public IActionResult Index(String name, String password)
+        public IActionResult Index(string name, string password)
         {
 
             //Recogemos la información de la vista
@@ -44,13 +44,18 @@ namespace WebApplication1.Controllers
 
             if (resultadoConsulta.HasRows)
             {
-                Console.WriteLine("Ha iniciado sesion con exito");
+                Console.WriteLine("Datos correctos");
+                if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
+                {
+                    HttpContext.Session.SetString("_User", name);
+                }
+                return View("HomePage");
+
             }
             else
             {
                 Console.WriteLine("Recuerde sus credenciales");
             }
-
             Console.WriteLine("Cerrando conexion");
             connection.Close();
             return View();
@@ -92,6 +97,7 @@ namespace WebApplication1.Controllers
             }
             if (mayuscula && minuscula && numero && password.Length >= 7)
             {
+
                 Console.WriteLine("La contraseña cumple los requisitos minimos");
                 NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
                 Console.WriteLine("Se ha registrado con exito");

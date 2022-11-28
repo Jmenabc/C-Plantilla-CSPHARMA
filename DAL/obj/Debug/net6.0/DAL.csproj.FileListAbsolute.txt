@@ -12,3 +12,17 @@ C:\Users\menaj\source\repos\WebApplication1\DAL\obj\Debug\net6.0\refint\DAL.dll
 C:\Users\menaj\source\repos\WebApplication1\DAL\obj\Debug\net6.0\DAL.pdb
 C:\Users\menaj\source\repos\WebApplication1\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
 C:\Users\menaj\source\repos\WebApplication1\DAL\obj\Debug\net6.0\ref\DAL.dll
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\bin\Debug\net6.0\DAL.deps.json
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\bin\Debug\net6.0\DAL.runtimeconfig.json
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\bin\Debug\net6.0\DAL.dll
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\bin\Debug\net6.0\DAL.pdb
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.dll
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\refint\DAL.dll
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.pdb
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\DAL.genruntimeconfig.cache
+C:\Users\javi\Desktop\C-Plantilla-CSPHARMA\DAL\obj\Debug\net6.0\ref\DAL.dll
