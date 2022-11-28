@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DAL.Modelos;
+using Microsoft.AspNetCore.Mvc;
 using Npgsql;
+using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Xml.Linq;
 using WebApplication1.Models;
@@ -23,6 +26,25 @@ namespace WebApplication1.Controllers
             return View();
         }
 
+        //metodo para convertir el resultado de la query en Lista
+        public static List<User> ReaderToList(NpgsqlDataReader resultadoConsulta)
+        {
+            List<User> UserData = new List<User>();
+            while (resultadoConsulta.Read())
+            {
+
+                UserData.Add(new User(
+
+                        resultadoConsulta[0].ToString(),
+                        resultadoConsulta[1].ToString(),
+                        resultadoConsulta[2].ToString(),
+                        resultadoConsulta[3].ToString()
+                    ));
+
+            }
+            return UserData;
+        }
+
         //Metodo post para comprobar si los credenciales de inicio de sesión son correctos
 
         [HttpPost]    
@@ -37,28 +59,38 @@ namespace WebApplication1.Controllers
             using var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=root");
             Console.WriteLine("HABRIENDO CONEXION");
             connection.Open();
-            
+            //Declaramos la lista
+            List<User> dataUser = new List<User>();
+
             NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"users\" WHERE usuario_nick='{name}' AND usuario_password='{password}'", connection);
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
+            
+            dataUser = ReaderToList(resultadoConsulta);
             
 
             if (resultadoConsulta.HasRows)
             {
-                connection.Close();
-                connection.Open();
-                resultadoConsulta.GetChar(3);
-                Console.WriteLine("Datos correctos");
-                if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
+                
+                
+                if (dataUser[0].Isadmin == "1")
                 {
-                    HttpContext.Session.SetString("_User", name);
+                    Console.WriteLine("Eres admin");
+                } else if (dataUser[0].Isadmin == "0")
+                {
+                    Console.WriteLine("Eres Usuario");
                 }
-                return View("HomePage");
+                    Console.WriteLine("Datos correctos");
+                   if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
+                    {
+                       HttpContext.Session.SetString("_User", name);
+                   }
+                   //return View("HomePage");
 
-            }
+                }
             else
             {
                 Console.WriteLine("Recuerde sus credenciales");
-            }
+           }
             Console.WriteLine("Cerrando conexion");
             connection.Close();
             return View();

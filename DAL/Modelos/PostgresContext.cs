@@ -34,6 +34,7 @@ public partial class PostgresContext : DbContext
             entity.Property(e => e.Id)
                 .UseIdentityAlwaysColumn()
                 .HasColumnName("id");
+            entity.Property(e => e.Isadmin).HasColumnName("isadmin");
             entity.Property(e => e.UsuarioNick)
                 .HasColumnType("character varying")
                 .HasColumnName("usuario_nick");
