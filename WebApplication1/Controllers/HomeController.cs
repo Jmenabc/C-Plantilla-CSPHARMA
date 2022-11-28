@@ -71,20 +71,21 @@ namespace WebApplication1.Controllers
             if (resultadoConsulta.HasRows)
             {
                 
-                
                 if (dataUser[0].Isadmin == "1")
                 {
                     Console.WriteLine("Eres admin");
+                    return View("AdminPage");
                 } else if (dataUser[0].Isadmin == "0")
                 {
                     Console.WriteLine("Eres Usuario");
+                    return View("UserPage");
                 }
                     Console.WriteLine("Datos correctos");
                    if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
                     {
                        HttpContext.Session.SetString("_User", name);
                    }
-                   //return View("HomePage");
+                   
 
                 }
             else

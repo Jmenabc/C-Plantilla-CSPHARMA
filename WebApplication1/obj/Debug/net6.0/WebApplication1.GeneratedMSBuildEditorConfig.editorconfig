@@ -16,8 +16,8 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\menaj\Documents\ALTAIR\C-Plantilla-CSPHARMA\WebApplication1
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/menaj/Documents/ALTAIR/C-Plantilla-CSPHARMA/WebApplication1/Views/Home/HomePage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIb21lUGFnZS5jc2h0bWw=
+[C:/Users/menaj/Documents/ALTAIR/C-Plantilla-CSPHARMA/WebApplication1/Views/Home/AdminPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBZG1pblBhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/menaj/Documents/ALTAIR/C-Plantilla-CSPHARMA/WebApplication1/Views/Home/Index.cshtml]
@@ -30,6 +30,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/menaj/Documents/ALTAIR/C-Plantilla-CSPHARMA/WebApplication1/Views/Home/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/menaj/Documents/ALTAIR/C-Plantilla-CSPHARMA/WebApplication1/Views/Home/UserPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyUGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/menaj/Documents/ALTAIR/C-Plantilla-CSPHARMA/WebApplication1/Views/Register/Register.cshtml]
