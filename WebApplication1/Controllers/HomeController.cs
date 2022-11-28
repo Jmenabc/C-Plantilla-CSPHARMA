@@ -44,6 +44,9 @@ namespace WebApplication1.Controllers
 
             if (resultadoConsulta.HasRows)
             {
+                connection.Close();
+                connection.Open();
+                resultadoConsulta.GetChar(3);
                 Console.WriteLine("Datos correctos");
                 if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
                 {
