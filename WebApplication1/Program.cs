@@ -1,7 +1,14 @@
+using DAL.Modelos;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<PostgresContext>(
+    o => o.UseNpgsql(builder.Configuration.GetConnectionString("EFCConexion"))
+    );
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(5);

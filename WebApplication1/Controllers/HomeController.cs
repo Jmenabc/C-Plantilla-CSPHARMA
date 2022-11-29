@@ -1,6 +1,7 @@
 ﻿using DAL.Modelos;
 using Microsoft.AspNetCore.Mvc;
 using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -61,39 +62,43 @@ namespace WebApplication1.Controllers
             connection.Open();
             //Declaramos la lista
             List<User> dataUser = new List<User>();
-
-            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"users\" WHERE usuario_nick='{name}' AND usuario_password='{password}'", connection);
+            //Hacemos la consulta y guardamos su información
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"users\" WHERE usuario_nick='{name}' AND usuario_password='{password}'");
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
-            
+            //Metemos los valores de la consulta en una lista para poder acceder a ella
             dataUser = ReaderToList(resultadoConsulta);
-            
-
             if (resultadoConsulta.HasRows)
             {
                 
                 if (dataUser[0].Isadmin == "1")
                 {
                     Console.WriteLine("Eres admin");
+                    Console.WriteLine("Datos correctos");
+                    if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
+                    {
+                        HttpContext.Session.SetString("_User", name);
+                    }
                     return View("AdminPage");
                 } else if (dataUser[0].Isadmin == "0")
                 {
                     Console.WriteLine("Eres Usuario");
+                    Console.WriteLine("Datos correctos");
+                    if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
+                    {
+                        HttpContext.Session.SetString("_User", name);
+                    }
                     return View("UserPage");
                 }
-                    Console.WriteLine("Datos correctos");
-                   if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
-                    {
-                       HttpContext.Session.SetString("_User", name);
-                   }
+                    
                    
 
-                }
+            }
             else
             {
                 Console.WriteLine("Recuerde sus credenciales");
-           }
+            }
             Console.WriteLine("Cerrando conexion");
-            connection.Close();
+            //connection.Close();
             return View();
         }
 
