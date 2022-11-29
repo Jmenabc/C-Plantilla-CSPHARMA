@@ -3,15 +3,20 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    
+    Layout = "~/Views/Shared/_RegisterLayout.cshtml";
 }
 
-<form method="post">
-    Name: <input type="text" name="name" id="name" /><br />
-    Password: <input type="password" name="password" id="password" /><br />
-    <button type="submit">Enviar información</button>
-</form>
-@Html.ActionLink("Logueate","Index")
-@ViewBag.Name
-@ViewBag.Password
+<div class="col-xs-1 center-block align-content-center text-center align-items-center justify-content-center align-middle h-100 ">
+    <div class="mb-3">
+        <h1>Alta</h1>
+    </div>
+    <div>
+        <form method="post">
+            <input class="mb-2 border-2" type="text" name="name" id="name" placeholder="Codigo de empleado" /><br />
+            <input class="mb-2 border-2" type="password" name="password" id="password" placeholder="Contraseña" /><br />
+            <button class="btn btn-dark border-2 text-light" type="submit"> >> </button>
+        </form>
+    </div>
+    @Html.ActionLink("Logueate aqui","Register")
+</div>
 
