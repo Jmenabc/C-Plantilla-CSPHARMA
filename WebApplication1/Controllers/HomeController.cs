@@ -51,11 +51,6 @@ namespace WebApplication1.Controllers
         [HttpPost]    
         public IActionResult Index(string name, string password)
         {
-
-            //Recogemos la información de la vista
-            ViewBag.Name = name;
-            ViewBag.Password = password;
-            Console.WriteLine(ViewBag.Name);
             //Hacemos la conexion
             using var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=root");
             Console.WriteLine("HABRIENDO CONEXION");
@@ -63,42 +58,27 @@ namespace WebApplication1.Controllers
             //Declaramos la lista
             List<User> dataUser = new List<User>();
             //Hacemos la consulta y guardamos su información
-            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"users\" WHERE usuario_nick='{name}' AND usuario_password='{password}'");
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"users\" WHERE usuario_nick='{name}' AND usuario_password='{password}'",connection);
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
             //Metemos los valores de la consulta en una lista para poder acceder a ella
             dataUser = ReaderToList(resultadoConsulta);
             if (resultadoConsulta.HasRows)
             {
-                
-                if (dataUser[0].Isadmin == "1")
+                //Metemos los valores en ViewBags para pasarlos a la vista
+                ViewBag.IsAdmin = dataUser[0].Isadmin;
+                if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
                 {
-                    Console.WriteLine("Eres admin");
-                    Console.WriteLine("Datos correctos");
-                    if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
-                    {
-                        HttpContext.Session.SetString("_User", name);
-                    }
-                    return View("AdminPage");
-                } else if (dataUser[0].Isadmin == "0")
-                {
-                    Console.WriteLine("Eres Usuario");
-                    Console.WriteLine("Datos correctos");
-                    if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
-                    {
-                        HttpContext.Session.SetString("_User", name);
-                    }
-                    return View("UserPage");
+                    HttpContext.Session.SetString("_User", name);
                 }
-                    
-                   
-
+                return View("HomePage");
             }
             else
             {
                 Console.WriteLine("Recuerde sus credenciales");
             }
+            //Cerramos la conexión
             Console.WriteLine("Cerrando conexion");
-            //connection.Close();
+            connection.Close();
             return View();
         }
 
