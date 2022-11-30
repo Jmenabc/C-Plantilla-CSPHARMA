@@ -4,6 +4,7 @@
 *@
 @{
     Layout = "~/Views/Shared/Layouts/_RegisterLayout.cshtml";
+    
 }
 
 <div class="col-xs-1 center-block align-content-center text-center align-items-center justify-content-center align-middle h-100 ">
@@ -12,10 +13,14 @@
     </div>
     <div>
         <form method="post">
-            <input class="mb-2 border-2" type="text" name="name" id="name" placeholder="Codigo de empleado" /><br />
-            <input class="mb-2 border-2" type="password" name="password" id="password" placeholder="Contraseña" /><br />
-            <button class="btn btn-dark border-2 text-light" type="submit"> >> </button>
+            <input class="mb-2 border-2" type="number" name="name" id="name" placeholder="Codigo de empleado" maxlength="1"/><br />
+            <input class="mb-2 border-2" type="password" name="password" id="password" placeholder="Contraseña" minlength="7"  /><br />
+            <button class="btn btn-dark border-2 text-light" type="submit"> Registrarse </button>
         </form>
+        <p class="text-danger">@ViewBag.NotUpper</p>
+        <p class="text-danger">@ViewBag.NotLower</p>
+        <p class="text-danger">@ViewBag.NotDigit</p>
+        <p class="text-danger">@ViewBag.Lenght</p>
     </div>
     @Html.ActionLink("Logueate aqui","Index")
 </div>

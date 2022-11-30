@@ -99,23 +99,32 @@ namespace WebApplication1.Controllers
             Console.WriteLine("HABRIENDO CONEXION");
             connection.Open();
 
-            NpgsqlCommand consulta = new NpgsqlCommand($"INSERT INTO \"public\".\"users\" (usuario_nick, usuario_password) VALUES('{ViewBag.Name}','{ViewBag.Password}')", connection);
+            NpgsqlCommand consulta = new NpgsqlCommand($"INSERT INTO \"public\".\"users\" (usuario_nick, usuario_password) VALUES('{name}','{password}')", connection);
             //Comparamos si la contraseña tiene menos de 7 caracteres
             bool mayuscula = false, minuscula = false, numero = false;
             for (int i = 0; i < password.Length; i++)
             {
                 if (Char.IsUpper(password, i))
                 {
+                    ViewBag.NotLower = "Al menos tiene que tener una minúscula";
+                    ViewBag.NotDigit = "Al menos debe de tener un número";
                     mayuscula = true;
+                    return View("Register");
                 }
                 else if (Char.IsLower(password, i))
                 {
+                    ViewBag.NotUpper = "Al menos tiene que tener una mayúscula";
+                    ViewBag.NotDigit = "Al menos debe de tener un número";
                     minuscula = true;
+                    return View("Register");
                 }
                 else if (Char.IsDigit(password, i))
                 {
+                    ViewBag.NotUpper = "Al menos tiene que tener una mayúscula";
+                    ViewBag.NotLower = "Al menos tiene que tener una minúscula";
                     numero = true;
-                }
+                    return View("Register");
+                } 
             }
             if (mayuscula && minuscula && numero && password.Length >= 7)
             {
@@ -123,10 +132,13 @@ namespace WebApplication1.Controllers
                 Console.WriteLine("La contraseña cumple los requisitos minimos");
                 NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
                 Console.WriteLine("Se ha registrado con exito");
+                return View("HomePage");
             }
             else
             {
+                ViewBag.Lenght = "La longitud minima debe ser de 7 caracteres";
                 Console.WriteLine("La contraseña no cumple los requisitos minimos");
+                return View("Register");
             }
             Console.WriteLine("Cerrando conexion");
             connection.Close();
