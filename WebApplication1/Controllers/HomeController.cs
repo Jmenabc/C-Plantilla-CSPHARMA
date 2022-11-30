@@ -7,10 +7,11 @@ using System.Data;
 using System.Diagnostics;
 using System.Xml.Linq;
 using WebApplication1.Models;
+using WebApplication1.Models.DTOs.DataToList;
 /*
- * Controlador de la vista de Login
- * @author Jmenabc
- */
+* Controlador de la vista de Login
+* @author Jmenabc
+*/
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
@@ -56,16 +57,16 @@ namespace WebApplication1.Controllers
             Console.WriteLine("HABRIENDO CONEXION");
             connection.Open();
             //Declaramos la lista
-            List<User> dataUser = new List<User>();
+            List<DlkCatAccEmpleado> dataUser = new List<DlkCatAccEmpleado>();
             //Hacemos la consulta y guardamos su información
-            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"users\" WHERE usuario_nick='{name}' AND usuario_password='{password}'",connection);
+            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"dlk_cat_acc_empleado\" WHERE cod_empleado='{name}' AND clave_empleado='{password}'",connection);
             NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
             //Metemos los valores de la consulta en una lista para poder acceder a ella
-            dataUser = ReaderToList(resultadoConsulta);
+            dataUser = UserResponseToList.ReaderToList(resultadoConsulta);
             if (resultadoConsulta.HasRows)
             {
                 //Metemos los valores en ViewBags para pasarlos a la vista
-                ViewBag.IsAdmin = dataUser[0].Isadmin;
+                ViewBag.IsAdmin = dataUser[0].NivelAccesoEmpleado;
                 if (string.IsNullOrEmpty(HttpContext.Session.GetString("_User")))
                 {
                     HttpContext.Session.SetString("_User", name);

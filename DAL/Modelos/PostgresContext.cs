@@ -15,6 +15,8 @@ public partial class PostgresContext : DbContext
     {
     }
 
+    public virtual DbSet<DlkCatAccEmpleado> DlkCatAccEmpleados { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -24,6 +26,27 @@ public partial class PostgresContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasPostgresExtension("pg_catalog", "adminpack");
+
+        modelBuilder.Entity<DlkCatAccEmpleado>(entity =>
+        {
+            entity.HasKey(e => e.CodEmpleado).HasName("dlk_cat_acc_empleado_pkey");
+
+            entity.ToTable("dlk_cat_acc_empleado");
+
+            entity.Property(e => e.CodEmpleado)
+                .ValueGeneratedNever()
+                .HasColumnName("cod_empleado");
+            entity.Property(e => e.ClaveEmpleado)
+                .HasColumnType("character varying")
+                .HasColumnName("clave_empleado");
+            entity.Property(e => e.MdDate)
+                .HasColumnType("timestamp without time zone")
+                .HasColumnName("md_date");
+            entity.Property(e => e.MdUuid)
+                .HasColumnType("character varying")
+                .HasColumnName("md_uuid");
+            entity.Property(e => e.NivelAccesoEmpleado).HasColumnName("nivel_acceso_empleado");
+        });
 
         modelBuilder.Entity<User>(entity =>
         {

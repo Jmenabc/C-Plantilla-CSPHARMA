@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DAL.Modelos;
 
-public  class User
+public partial class User
 {
     public string Id { get; set; }
 
@@ -13,14 +13,11 @@ public  class User
 
     public string? Isadmin { get; set; }
 
-    //Constructor
-
-    public User(string ID, string UsuarioNick1,String UsuarioPasssword, string IsAdmin)
+    public User(string id, string usuarioNick, string usuarioPassword, string? isadmin)
     {
-        Id = ID;
-        UsuarioNick = UsuarioNick1;
-        UsuarioPassword = UsuarioPasssword;
-        Isadmin = IsAdmin;
-
+        Id = id;
+        UsuarioNick = usuarioNick;
+        UsuarioPassword = usuarioPassword;
+        Isadmin = isadmin;
     }
 }
