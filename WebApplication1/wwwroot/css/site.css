@@ -16,3 +16,21 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+green-bg {
+    background-color: #5ccb5f;
+}
+
+text-white {
+    color: white;
+}
+text-blue {
+    color: #5dc1b9;
+}
+
+register-login-btn {
+    border-radius: 16px;
+    border-color: #5dc1b9;
+    color: #5dc1b9;
+    background-color: white;
+}
