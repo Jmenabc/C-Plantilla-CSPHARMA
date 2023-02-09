@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pvGm9KbHVyogfJPXV2zq2sZ3//xjRQ8nYD3OTGRBA+TiIbPf5oZ8yzObs0/DcrqwfmD2HT5eI4PEEg9Q+JlaIQ==",
+  "dgSpecHash": "VYKQc+npcbDf5n/hKdIK5lWaQOtKleN80f9iGIXkbR5y76okAixOvaf9U+SKVO0w0ekf9zY9y3w0jajTFTmcwQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\menaj\\Documents\\ALTAIR\\C-Plantilla-CSPHARMA\\DAL\\DAL.csproj",
+  "projectFilePath": "C:\\Users\\menaj\\Documents\\C-Plantilla-CSPHARMA\\DAL\\DAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\menaj\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\menaj\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0\\microsoft.entityframeworkcore.7.0.0.nupkg.sha512",

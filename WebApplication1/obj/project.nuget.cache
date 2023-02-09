@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "JB3QNZMqU+pyw7EfsOzp85WK2WvDTtbO7MmImwpIgE2FZJqq1AHsm59l8UbsFiFibrMYCbssrDv6y2C0K1tfqg==",
+  "dgSpecHash": "yK3/zBnlfPkFkLEq2mAs28/P4AlJFxFHv9vBdIMS6NtDyr7jauHjnAqYuXH2ONx3oBeWLTrlKbus1b80m92H8w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\menaj\\Documents\\ALTAIR\\C-Plantilla-CSPHARMA\\WebApplication1\\WebApplication1.csproj",
+  "projectFilePath": "C:\\Users\\menaj\\Documents\\C-Plantilla-CSPHARMA\\WebApplication1\\WebApplication1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\menaj\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\menaj\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.0\\microsoft.entityframeworkcore.7.0.0.nupkg.sha512",

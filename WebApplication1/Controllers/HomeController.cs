@@ -17,10 +17,13 @@ namespace WebApplication1.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        //añadimos nuestro archivo de configuracion json para recoger la cadena de conexion
+        private readonly IConfiguration _config;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
             _logger = logger;
+            _config = config;
         }
 
         public IActionResult Index()
@@ -28,39 +31,17 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        //metodo para convertir el resultado de la query en Lista
-        public static List<User> ReaderToList(NpgsqlDataReader resultadoConsulta)
-        {
-            List<User> UserData = new List<User>();
-            while (resultadoConsulta.Read())
-            {
-
-                UserData.Add(new User(
-
-                        resultadoConsulta[0].ToString(),
-                        resultadoConsulta[1].ToString(),
-                        resultadoConsulta[2].ToString(),
-                        resultadoConsulta[3].ToString()
-                    ));
-
-            }
-            return UserData;
-        }
 
         //Metodo post para comprobar si los credenciales de inicio de sesión son correctos
 
         [HttpPost]    
         public IActionResult Index(string name, string password)
         {
-            //Hacemos la conexion
-            using var connection = new NpgsqlConnection("Server=localhost;Port=5432;Database=postgres;User Id=postgres;Password=root");
-            Console.WriteLine("HABRIENDO CONEXION");
-            connection.Open();
+            
             //Declaramos la lista
             List<DlkCatAccEmpleado> dataUser = new List<DlkCatAccEmpleado>();
             //Hacemos la consulta y guardamos su información
-            NpgsqlCommand consulta = new NpgsqlCommand($"SELECT * FROM \"public\".\"dlk_cat_acc_empleado\" WHERE cod_empleado='{name}' AND clave_empleado='{password}'",connection);
-            NpgsqlDataReader resultadoConsulta = consulta.ExecuteReader();
+            
             //Metemos los valores de la consulta en una lista para poder acceder a ella
             dataUser = UserResponseToList.ReaderToList(resultadoConsulta);
             if (resultadoConsulta.HasRows)

@@ -3,22 +3,22 @@ using Npgsql;
 
 namespace WebApplication1.Models.DTOs.DataToList
 {
-    public class UserResponseToList
+    public class loginToList
     {
+
         //metodo para convertir el resultado de la query en Lista
-        public static List<DlkCatAccEmpleado> ReaderToList(NpgsqlDataReader resultadoConsulta)
+        public static List<User> ReaderToList(NpgsqlDataReader resultadoConsulta)
         {
-            List<DlkCatAccEmpleado> UserData = new List<DlkCatAccEmpleado>();
+            List<User> UserData = new List<User>();
             while (resultadoConsulta.Read())
             {
 
-                UserData.Add(new DlkCatAccEmpleado(
+                UserData.Add(new User(
 
                         resultadoConsulta[0].ToString(),
                         resultadoConsulta[1].ToString(),
                         resultadoConsulta[2].ToString(),
-                        resultadoConsulta[3].ToString(),
-                        resultadoConsulta[4].ToString()
+                        resultadoConsulta[3].ToString()
                     ));
 
             }
